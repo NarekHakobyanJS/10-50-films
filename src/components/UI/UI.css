@@ -1,0 +1,7 @@
+.UI-BTN {
+    min-width: 120px;
+    border : none;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}

@@ -1,0 +1,20 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid cyan;
+}
+
+.logo-block > img {
+    width: 77px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    max-width: 770px;
+    overflow: scroll;
+}
