@@ -26,9 +26,6 @@ const genresSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        // builder.addCase(getGenres.pending, (state, action) => {
-
-        // })
         builder.addCase(getGenres.fulfilled, (state, action : PayloadAction<Array<GenresType>>) => {
             state.genres = action.payload
         })

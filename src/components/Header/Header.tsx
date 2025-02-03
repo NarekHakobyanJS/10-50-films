@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { getGenres } from '../../store/slices/genresSlice'
-import logo from '../../assets/logo.jpg'
-import './Header.css'
-import BTN from '../UI/BTN'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { changeLenguage } from '../../store/slices/globalSlice'
+
+import BTN from '../UI/BTN'
+
+import logo from '../../assets/logo.jpg'
+import './Header.css'
 
 const Header = () => {
   const { genres } = useAppSelector((state) => state.genresData)

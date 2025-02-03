@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import genresSlice from "./slices/genresSlice";
 import globalSlice from "./slices/globalSlice";
+import filmsSlice from "./slices/filmsSlice";
 
 export const store = configureStore({
     reducer : {
         genresData : genresSlice,
-        globalData : globalSlice
+        globalData : globalSlice,
+        filmsData : filmsSlice
     }
 })
+
 
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
