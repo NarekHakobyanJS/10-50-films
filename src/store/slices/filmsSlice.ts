@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { FilmsAPI } from "../../api/api";
-import { FilmsType } from "../../types";
+import { FilmsType, OneFilmType } from "../../types";
 
 type GetFilmsArgumentType = {
     pageCount : number,
@@ -11,8 +11,10 @@ type FilmsStateType = {
     films : Array<FilmsType>,
     page : number,
     total_results : number,
-    total_pages : number
+    total_pages : number,
+    oneFilm : OneFilmType | null
 }
+
 export const getFilms = createAsyncThunk<Array<FilmsType>, GetFilmsArgumentType>(
     'getFilms',
     async ({pageCount, language}) => {
@@ -21,10 +23,20 @@ export const getFilms = createAsyncThunk<Array<FilmsType>, GetFilmsArgumentType>
     }
 )
 
+export const getOneFilm = createAsyncThunk<OneFilmType, string | undefined>(
+    'getOneFilm',
+    async (id) => {
+        const res = await FilmsAPI.getOneFilm(id)
+
+        return res.data
+    }
+)
+
 
 
 const initialState : FilmsStateType = {
     films : [],
+    oneFilm : null,
     page : 1,
     total_results : 0,
     total_pages : 0
@@ -39,6 +51,9 @@ const filmsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getFilms.fulfilled, (state, action : PayloadAction<Array<FilmsType>>) => {
             state.films = action.payload
+        })
+        builder.addCase(getOneFilm.fulfilled, (state, action : PayloadAction<OneFilmType>) => {
+            state.oneFilm = action.payload
         })
     }
 })

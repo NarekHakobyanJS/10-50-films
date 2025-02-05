@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { FilmsType, GenresType } from '../types';
+import { FilmsType, GenresType, OneFilmType } from '../types';
 
-const apiKey : string = "f36f23edf6e10fd2ddcf939916b1f67a";
 
 type GetGenresType = {
     genres : Array<GenresType>
@@ -21,9 +20,12 @@ const instance = axios.create({
 
 export const FilmsAPI = {
     getGenres(lng : string){
-        return instance.get<GetGenresType>(`/genre/movie/list?api_key=${apiKey}&language=${lng}`)
+        return instance.get<GetGenresType>(`/genre/movie/list?api_key=${import.meta.env.VITE_API_KEY}&language=${lng}`)
     },
     getFilms(pageCount : number, lng : string){
-        return instance.get<GetFilmsType>(`discover/movie?api_key=${apiKey}&language=${lng}&page=${pageCount}`)
+        return instance.get<GetFilmsType>(`discover/movie?api_key=${import.meta.env.VITE_API_KEY}&language=${lng}&page=${pageCount}`)
+    },
+    getOneFilm(id : string | undefined ){
+        return instance.get<OneFilmType>(`/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`)
     }
 }
