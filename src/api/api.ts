@@ -15,7 +15,10 @@ type GetFilmsType = {
 }
 
 const instance = axios.create({
-    baseURL : 'https://api.themoviedb.org/3'
+    baseURL : 'https://api.themoviedb.org/3',
+    headers: {
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGM4NjNiZjI5MWY1NjUxOTAyYmIzYWY4MjI1NmUwMiIsInN1YiI6IjYxNTYyZWY2ZTE4Yjk3MDA2MjkyODgzMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h_pBSpt1JQsgAdYyYZbt6dHDzEmGljF11e4m1MO-CHg",
+    },
 })
 
 export const FilmsAPI = {
@@ -25,7 +28,14 @@ export const FilmsAPI = {
     getFilms(pageCount : number, lng : string){
         return instance.get<GetFilmsType>(`discover/movie?api_key=${import.meta.env.VITE_API_KEY}&language=${lng}&page=${pageCount}`)
     },
-    getOneFilm(id : string | undefined ){
-        return instance.get<OneFilmType>(`/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`)
+    getOneFilm(id : string | undefined, lng : string ){
+        return instance.get<OneFilmType>(`/movie/${id}?api_key=${import.meta.env.VITE_API_KEY}&language=${lng}`)
+    },
+    getSearch(text : string){
+        return instance.get(`search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${text}`)
+    },
+    getTrailer(movieId : string | undefined){
+        return instance.get(`/movie/${movieId}/videos?language=en-US`)
     }
+
 }

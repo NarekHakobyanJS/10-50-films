@@ -6,7 +6,6 @@ type FilmPropsType = {
     oneFilm : OneFilmType | null
 }
 const Film = ({oneFilm} : FilmPropsType) => {
-    console.log(oneFilm);
     
   return (
     <div 

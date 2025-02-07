@@ -18,3 +18,32 @@ nav {
     max-width: 770px;
     overflow: scroll;
 }
+
+.input-search {
+    position: relative;
+}
+.search-result {
+    left : -157px;
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    background-color: white;
+    overflow-y: scroll;
+    z-index: 99;
+}
+
+.search-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchFilms {
+    display: flex;
+    gap : 10px;
+    justify-content: space-between;
+}
+
+.searchFilms > img {
+    width: 155px;
+}
